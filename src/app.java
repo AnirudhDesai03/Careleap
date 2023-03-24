@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,6 +10,7 @@ class app implements ActionListener {
     static JFrame frame3;
     static JFrame frame4;
     static JFrame frame5;
+    static JFrame frame6;
     static JButton admin;
     static JButton close;
     static JButton signup;
@@ -20,6 +20,8 @@ class app implements ActionListener {
     static JButton about;
     static JButton record;
     static JButton logout;
+    static JButton return3;
+    static JButton home;
 
     //Driver function
     public static void main(String args[]) {
@@ -39,7 +41,6 @@ class app implements ActionListener {
         contentPane.add(background);
         frame1.setContentPane(background);
         frame1.setLayout(null);
-
 
         //Create Admin buttons
         admin = new JButton("Admin");
@@ -109,6 +110,16 @@ class app implements ActionListener {
             frame4.dispose();
             create_frame3();
         }
+        if (button.equals("About")) {
+            create_frame6();
+        }
+        if (button.equals("Return")) {
+            frame6.dispose();
+        }
+        if (button.equals("Home")) {
+            frame5.dispose();
+        }
+
     }
 
     //Frame 2
@@ -164,7 +175,6 @@ class app implements ActionListener {
         mnoField.setOpaque(false); // Make the text field transparent
         mnoField.setFont(new Font("Times new Roman", Font.BOLD, 18));
         frame2.add(mnoField);
-
 
 
         // Create and add JPasswordField for Password
@@ -476,10 +486,18 @@ class app implements ActionListener {
         logout.setForeground(Color.black);
         logout.setBackground(Color.RED);
         logout.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        logout.setBounds(5, 5, 100, 50);
+        logout.setBounds(5, 5, 50, 35);
+
+        //Create Return buttons
+        home = new JButton("Home");
+        home.setForeground(Color.black);
+        home.setBackground(new Color(135, 206, 235));
+        home.setBounds(70, 5, 50, 35);
+        home.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         //Add the Button to the Frame 5
         frame5.add(logout);
+        frame5.add(home);
 
         //Add hospital Column
         JTextArea area3 = new JTextArea();
@@ -519,7 +537,7 @@ class app implements ActionListener {
         panel.add(label2, BorderLayout.NORTH);
 
         // Create a table with 2 rows and 7 columns
-        String[] columnNames = {"Classes"," Beds"};
+        String[] columnNames = {"Classes", " Beds"};
         Object[][] data = {
                 {"Critical care beds", "50"},
                 {"Curative (acute) \n" +
@@ -530,8 +548,8 @@ class app implements ActionListener {
                         "Beds", "50"},
                 {"General", "400"},
                 {"Blood Bank", "50"},
-                {"Ophthal HOD","10"},
-                {"ECG ","10"}
+                {"Ophthal HOD", "10"},
+                {"ECG ", "10"}
         };
 
         JTable table = new JTable(data, columnNames);
@@ -554,13 +572,11 @@ class app implements ActionListener {
         }
 
 
-
         // Add padding to panel2
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(10, 10, 10, 10),
                 BorderFactory.createLineBorder(Color.BLACK)
         ));
-
 
 
         // add Panel to frame 5
@@ -570,8 +586,62 @@ class app implements ActionListener {
 
         //Associate Action Listner
         logout.addActionListener(obj);
+        home.addActionListener(obj);
 
         //Display Frame 5
         frame5.setVisible(true);
+    }
+
+    public static void create_frame6() {
+        //Create frame 6
+        frame6 = new JFrame("Frame 6");
+        frame6.setBounds(400, 50, 750, 750);
+        frame6.setLayout(null);
+        frame6.setBackground(Color.WHITE);
+
+        //To set a background image
+        JPanel contentPane = new JPanel();
+        contentPane.setOpaque(false);
+        contentPane.setLayout(null);
+        JLabel background = new JLabel(new ImageIcon("D:\\Work\\linkpage7\\Hospital1.png"));
+        background.setBounds(0, 0, 300, 500);
+        background.setForeground(new Color(255, 255, 255, 128)); // 50% opacity
+        contentPane.add(background);
+        frame6.setContentPane(background);
+        frame6.setLayout(null);
+
+        //Text for Already have an Account
+        JTextArea area5 = new JTextArea();
+        area5.setEditable(false);
+        area5.setLineWrap(true);
+        area5.setWrapStyleWord(true);
+        area5.setOpaque(false); // Make the text field transparent
+        area5.setText("xyz was founded by \n"+"Seven Dedicated Teachers or Saptharishis\" in 1916 headquartered at Belagavi,\n"+" KLE Society runs over 250 educational institutions in Karnataka and Maharashtra.\n"+" On 13 November 1916, KLE Society started an Anglo Vernacular School in Belagavi.\n"+" Lingaraj College came into existence in June 1933.\n"+" In 1947, B.V. Bhoomaraddi College of Engineering and Technology was started in Hubballi.\n"+" Jawaharlal Nehru Medical College at Belagavi and \n"+"Gudleppa Hallikeri College at Haveri were started in 1963.");
+        area5.setFont(new Font("Times new Roman", Font.BOLD, 20));
+        area5.setBounds(150, 250, 500, 400);
+        area5.setBackground(new Color(135, 206, 235));
+        frame6.add(area5, BorderLayout.CENTER);
+        
+
+        //Create Return buttons
+        return3 = new JButton("Return");
+        return3.setForeground(Color.black);
+        return3.setBackground(new Color(135, 206, 235));
+        return3.setBounds(600, 30, 100, 50);
+        return3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        return3.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+
+        //Add the buttons to frame 1
+        frame6.add(return3);
+
+        //Create an object
+        app obj = new app();
+
+        //Associate ActionListener with the buttons
+        return3.addActionListener(obj);
+
+        //Display frame 1
+        frame6.setVisible(true);
+
     }
 }
