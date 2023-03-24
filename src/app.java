@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
@@ -162,6 +164,7 @@ class app implements ActionListener {
         mnoField.setOpaque(false); // Make the text field transparent
         mnoField.setFont(new Font("Times new Roman", Font.BOLD, 18));
         frame2.add(mnoField);
+
 
 
         // Create and add JPasswordField for Password
@@ -516,25 +519,41 @@ class app implements ActionListener {
         panel.add(label2, BorderLayout.NORTH);
 
         // Create a table with 2 rows and 7 columns
-        String[] columnNames = {"Classes","Available Beds"};
+        String[] columnNames = {"Classes"," Beds"};
         Object[][] data = {
-                {"Critical care beds", "150"},
+                {"Critical care beds", "50"},
                 {"Curative (acute) \n" +
-                        "care beds", "150"},
+                        "care beds", "50"},
                 {"Adjustable Hospital \n" +
-                        "Beds", "150"},
+                        "Beds", "100"},
                 {"Specialty Hospital \n" +
-                        "Beds", "150"},
-                {"General", "150"},
-                {"Blood Bank", "150"},
+                        "Beds", "50"},
+                {"General", "400"},
+                {"Blood Bank", "50"},
+                {"Ophthal HOD","10"},
+                {"ECG ","10"}
         };
 
         JTable table = new JTable(data, columnNames);
+
         table.setRowHeight(50);
         table.setBackground(new Color(223, 230, 233));
         table.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         JScrollPane scrollPane = new JScrollPane(table);
         panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Set column width
+        TableColumn column = null;
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            column = table.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(300); // set preferred width for first column
+            } else {
+                column.setPreferredWidth(100); // set preferred width for other columns
+            }
+        }
+
+
 
         // Add padding to panel2
         panel.setBorder(BorderFactory.createCompoundBorder(
