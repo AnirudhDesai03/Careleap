@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Careleap.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Careleap_jar</output-path>
+    <root id="archive" name="linkpage7.jar">
+      <element id="module-output" name="linkpage7" />
+    </root>
+  </artifact>
+</component>
